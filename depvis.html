@@ -1,0 +1,22 @@
+<html>
+ <head>
+  <link rel="stylesheet" type="text/css" href="mystyles.css" />
+  <script src="jquery-2.0.3.min.js"> </script> 
+  <script type="text/javascript" src="en-len12.json"></script>
+  <script type="application/javascript" src="draw.js"></script>
+ </head>
+
+<body onload="drawInit('en-len12.json');">
+		<div id="corpusInfo"> </div>
+	<canvas id="canvas" width="1000" height="300"> </canvas>
+		<div id="sentId"> </div>
+		<button type="button" class="google button" id="b.prev" onclick="switchSentence(-1);">Prev</button>
+		<button type="button" class="google button" id="b.next" onclick="switchSentence(1);">Next</button>
+		<button type="button" class="google button" id="b.prev.ten" onclick="switchSentence(-10);">Prev 10</button>
+		<button type="button" class="google button" id="b.next.ten" onclick="switchSentence(10);">Next 10</button>
+		<button type="button" class="google button" onclick="drawBoth();">Draw All!</button>
+		<button type="button" class="google button" onclick="goldOnly();">Gold Only</button>
+		<button type="button" class="google button" onclick="predOnly();">Predicted Only</button>
+		
+</body>
+</html>

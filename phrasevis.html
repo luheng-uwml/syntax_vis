@@ -1,0 +1,39 @@
+<html>
+ <head>
+  <link rel="stylesheet" type="text/css" href="mystyles.css" />
+  <script src="jquery-2.0.3.min.js"> </script> 
+  <script type="text/javascript" src="weblog.3best.json"></script>
+  <script type="application/javascript" src="draw.js"></script>
+ </head>
+
+<body onload="loadFileCC(); drawInitCC();">
+	<hr style="background:#91C5EB; border:0; height:3px" />
+	<div id="controller"> 
+		.......... Select a data set and click [Refresh!]:
+		<select id="src-select" onchange="loadFileCC();">
+  			<option value="weblog.3best.json">weblog 3-best 4-25 words</option>
+  			<option value="reviews.3best.json">reviews 3-best 4-25 words</option>
+  			<option value="newsgroup.3best.json">newsgroup 3-best 4-25 words</option>
+  			<option value="email.3best.json">email 3-best 4-25 words</option>
+  			<option value="weblog.pp.json">weblog 3-best with pp attachment error</option>
+  			<option value="reviews.pp.json">reviews 3-best with pp attachment error</option>
+  			<option value="newsgroup.pp.json">newsgroup 3-best with pp attachment error</option>
+  			<option value="email.pp.json">email 3-best with pp attachment error</option>
+		</select> 
+		<button type="button" class="google button" id="b.refresh" onclick="drawInitCC();">Refresh!</button>
+		......................................................
+		<button type="button" class="google button" id="b.prev" onclick="switchSentenceCC(-1);">Prev</button>
+		<button type="button" class="google button" id="b.next" onclick="switchSentenceCC(1);">Next</button>
+		<button type="button" class="google button" id="b.prev.ten" onclick="switchSentenceCC(-10);">Prev 10</button>
+		<button type="button" class="google button" id="b.next.ten" onclick="switchSentenceCC(10);">Next 10</button>
+	</div>	
+		<hr style="background:#91C5EB; border:0; height:3px" />
+		<div id="corpusInfo"> </div> <div id="sentId"> </div>
+		
+		Raw sentence: <textarea id ="sentText" rows = "1" cols = "200" readonly=true onfocus="this.select();" onmouseup="return false;"> </textarea>
+		<hr style="background:#91C5EB; border:0; height:3px" />
+		<canvas id="canvas" width="1500" height="2000"> </canvas>	
+				
+		
+</body>
+</html>
