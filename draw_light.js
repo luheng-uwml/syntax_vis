@@ -16,8 +16,9 @@ var widthLimit = 1300;
 var arrowSize = 10;
 var theta = 0.18;
 var gamma = 0.12;
+
 var ctx;
-	
+
 var matchedArcStyle = "rgba(0,0,0,0.8)";
 var goldArcStyle = "rgba(0,100,0,0.8)";
 var wrongArcStyle = "rgba(200,0,0,0.8)";
@@ -125,6 +126,13 @@ function drawBracket(label, bpos, X, Y) {
 function drawOneParseCC(words, tags, phrases, X, Y) {
 	var numWords = words.length;
 	var numPhrases = phrases.length;
+	
+	var canvas = document.getElementById("canvas");
+	if (canvas.getContext) {
+	   	ctx = canvas.getContext("2d");	
+		ctx.clearRect(0, 0, 1500, 800);
+		ctx.textAlign = "center";
+	}
 	ctx.fillStyle = defaultFillStyle;
 	ctx.textAlign = "center"; 
 	// compute word positions
@@ -197,7 +205,7 @@ function parseBracketString(tree_str) {
                 j += 1;
             }
             if (tree_str.charAt(j) == ')') {
-                var terms = $.trim(tree_str.substring(i+1,j)).split();
+                var terms = $.trim(tree_str.substring(i+1,j)).split(' ');
                 if (terms[0] != "-NONE-") {
                 	tags.push(terms[0]);
                 	words.push(terms[1]);
@@ -219,10 +227,17 @@ function parseBracketString(tree_str) {
             i += 1;
         }
     }
-    return { "words": words, "tags": tags, "phrases": phrases}
+    return { "words": words, "tags": tags, "phrases": spans}
 }
 
 function visualizeBracketString() {
 	// Get string from input box
-	
+	var tree_str = $( "#tree_input" ).val();
+	var tree_obj = parseBracketString(tree_str);
+	/*alert(tree_str);
+	alert(tree_obj.words);
+	alert(tree_obj.tags);
+	alert(tree_obj.phrases);
+	*/
+	drawOneParseCC(tree_obj.words, tree_obj.tags, tree_obj.phrases, 50, 50);
 }
