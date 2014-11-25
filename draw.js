@@ -90,6 +90,13 @@ function drawInit(fileName) {
    	$ ("#corpusInfo").html("<p>Displaying sentences from " + fileName + " ... </p>");
 	drawBoth();
 }
+
+function visualizeDependencies() {
+	var input_str = $( "#tree_input" ).val();
+	sentences = [JSON.parse(input_str), ];
+	sentIdx = 0;
+	drawBoth();
+}
 	
 function drawOneSentence() {
 	var canvas = document.getElementById("canvas");
@@ -103,7 +110,7 @@ function drawOneSentence() {
 		
 		// Set to default fillStyle
 		ctx.fillStyle = defaultFillStyle;
-		for (i = 0; i < numWords; i++) {
+		for (var i = 0; i < numWords; i++) {
 			// var wordSize = Math.max(sentence["words"][i].length, sentence["tags"][i].legnth) * 10;
 			wordWidth[i] = sentence["words"][i].length * 10;
 			// alert(i + ", " + wordSize);
@@ -114,7 +121,7 @@ function drawOneSentence() {
 			ctx.fillText(sentence["words"][i], wordPos[i], yPositionTokens);
 		}
 		// put tags
-		for (i = 0; i < numWords; i++) {
+		for (var i = 0; i < numWords; i++) {
 			ctx.fillText(sentence["tags"][i], wordPos[i], yPositionTags);
 		}
 		// put arcs
@@ -124,7 +131,7 @@ function drawOneSentence() {
 		if (!sentence["pred"]) {
 			drawPred = false;
 		}
-		for (i = 0; i < numWords; i++) {
+		for (var i = 0; i < numWords; i++) {
 			if (drawGold && drawPred) {
 				if (sentence["gold"][i] == sentence["pred"][i]) {
 					drawArc(i, sentence["gold"][i]-1, yPositionArcs, matchedArcStyle);	
@@ -206,7 +213,7 @@ function onClick(canvas) {
    	// detect word
    	var sentence = sentences[sentIdx];
 	var numWords = sentence["words"].length;
-   	for (i = 0; i < numWords; i++) {
+   	for (var i = 0; i < numWords; i++) {
    		//alert("clicked: " + canvas.pageX + ", " + canvas.pageY + ", " + wordPos[i] + ", "  +wordWidth[i] + ", " + yPositionTokens);
    		if (Math.abs(canvas.pageX - wordPos[i]) < wordWidth[i] / 2 && Math.abs(canvas.pageY - yPositionTokens) < 10) {
 			// draw a rectangle

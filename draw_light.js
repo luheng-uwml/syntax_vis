@@ -227,7 +227,7 @@ function parseBracketString(tree_str) {
             i += 1;
         }
     }
-    return { "words": words, "tags": tags, "phrases": spans}
+    return { "words": words, "tags": tags, "phrases": spans};
 }
 
 function visualizeBracketString() {
